@@ -29,6 +29,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+                    
                     <ul class="navbar-nav me-auto pt-2 pt-lg-0 font-base">
                         <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="/">Главная</a></li>
                         <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="{% url 'design' %}">Дизайн</a></li>
@@ -37,10 +38,31 @@
                         <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="{% url 'marketing' %}">Маркетинг</a></li>
                         <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="{% url 'contacts' %}">Контакты</a></li>
                     </ul>
+
                     <div class="ps-lg-5">
-                        <button class="btn btn-link text-primary fw-bold order-1 order-lg-0" type="button">Авторизация</button>
-                        <button class="btn btn-light shadow-klean order-0" type="submit"><span class="text-gradient fw-bold">Зарегистрироваться</span></button>
+
+                        {% if user.is_active %}
+
+                            <a class="btn btn-link text-primary fw-bold order-1 order-lg-0" href="{% url 'logout' %}">
+                                Выход
+                            </a>
+
+                        {% else %}
+
+                            <a class="btn btn-link text-primary fw-bold order-1 order-lg-0" href="{% url 'auth' %}">
+                                Авторизация
+                            </a>
+
+                            <a class="btn btn-light shadow-klean order-0" href="{% url 'registration' %}">
+                                <span class="text-gradient fw-bold">
+                                    Зарегистрироваться
+                                </span>
+                            </a>
+
+                        {% endif %}
+
                     </div>
+
                 </div>
             </div>
         </nav>

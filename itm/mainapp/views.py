@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView
 
 
@@ -8,14 +7,6 @@ class MainPageView(TemplateView):
 
 class WebPageView(TemplateView):
     template_name = 'mainapp/web.html'
-
-
-class RegPageView(TemplateView):
-    template_name = 'mainapp/register.html'
-
-
-class ProfilePageView(TemplateView):
-    template_name = 'mainapp/profile.html'
 
 
 class MobilPageView(TemplateView):
