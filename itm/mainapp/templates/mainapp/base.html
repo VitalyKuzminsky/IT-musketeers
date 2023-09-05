@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>IT-Мушкетеры</title>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicons/apple-touch-icon.png' %} ">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicons/favicon-32x32.png' %} ">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicons/favicon-16x16.png' %} ">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicons/favicon.ico' %} ">
+        <link rel="manifest" href="{% static 'img/favicons/manifest.json' %} ">
+        <meta name="msapplication-TileImage" content="{% static 'img/favicons/mstile-150x150.png' %} ">
+        <meta name="theme-color" content="#ffffff">
+
+        <link href="{% static 'css/theme.css' %} " rel="stylesheet" />
+    
+    </head>
+
+
+<body>
+
+    <main class="main" id="top">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block navbar-klean" data-navbar-on-scroll="data-navbar-on-scroll">
+            <div class="container"><a class="navbar-brand" href="/"> <img class="me-3 d-inline-block" width="25" src="{% static 'img/gallery/logo.png' %} " alt="" /></a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto pt-2 pt-lg-0 font-base">
+                        <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="/">Главная</a></li>
+                        <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="{% url 'design' %}">Дизайн</a></li>
+                        <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="{% url 'web' %}">Web-Разработка</a></li>
+                        <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="{% url 'mobile' %}">Мобильная Разработка</a></li>
+                        <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="{% url 'marketing' %}">Маркетинг</a></li>
+                        <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="{% url 'contacts' %}">Контакты</a></li>
+                    </ul>
+                    <div class="ps-lg-5">
+                        <button class="btn btn-link text-primary fw-bold order-1 order-lg-0" type="button">Авторизация</button>
+                        <button class="btn btn-light shadow-klean order-0" type="submit"><span class="text-gradient fw-bold">Зарегистрироваться</span></button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        {% block content %}
+
+        {% endblock content %}
+
+    </main>
+
+
+  </body>
+
+</html>
