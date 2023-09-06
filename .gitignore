@@ -160,3 +160,7 @@ cython_debug/
 #.idea/
 /itm/mainapp/migrations/
 /itm/authapp/migrations/
+
+/.idea
+.idea/
+/.idea/
