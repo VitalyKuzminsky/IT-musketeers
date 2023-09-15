@@ -1,6 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django import forms
-from authapp.models import CustomUser
 
 
 class LoginUserForm(AuthenticationForm):
@@ -32,6 +31,7 @@ class CustomUserCreationForm(UserCreationForm):
                     'class': 'form-control mb-4',
                     'placeholder': 'Введите своё Имя'
                 }),
+                # Поле не обязательно
                 required=False
                 )
     
@@ -40,6 +40,7 @@ class CustomUserCreationForm(UserCreationForm):
                     'class': 'form-control mb-4',
                     'placeholder': 'Введите свою Фамилию'
                 }),
+                # Поле не обязательно
                 required=False
                 )
     
@@ -61,6 +62,7 @@ class CustomUserCreationForm(UserCreationForm):
                     'class': 'form-control mb-4',
                     'placeholder': '+7(999)999-99-99',
                 }),
+                # Поле не обязательно
                 required=False
                 )
     
@@ -83,7 +85,7 @@ class CustomUserCreationForm(UserCreationForm):
                     'value': 'Зарегистрироваться'
                 }))
     
-
+    # Очерёдность полей формы
     field_order = [
         'username', 
         'first_name', 
