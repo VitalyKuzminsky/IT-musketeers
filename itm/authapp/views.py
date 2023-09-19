@@ -4,7 +4,7 @@ from authapp.forms import LoginUserForm, CustomUserCreationForm
 from django.urls import reverse_lazy
 from authapp import models
 from django.http.response import HttpResponseRedirect
-from django.contrib.auth import password_validation
+from django.contrib.auth.password_validation import validate_password
 
 
 class RegPageView(CreateView):
@@ -18,7 +18,7 @@ class RegPageView(CreateView):
                     request.POST.get("username"),
                     request.POST.get("email"),
                     request.POST.get("password1"),
-                    password_validation.validate_password(request.POST.get("password1")) == None,
+                    validate_password(request.POST.get("password1")) == None,
                     request.POST.get("password1") == request.POST.get("password2"),
                 )
             ):
