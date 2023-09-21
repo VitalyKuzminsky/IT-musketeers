@@ -7,7 +7,7 @@ class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(
                 attrs={
                     'class': 'form-control mb-4',
-                    'placeholder': 'Введите свой Email'
+                    'placeholder': 'Введите свой логин'
                 }))
 
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(
@@ -15,8 +15,7 @@ class LoginUserForm(AuthenticationForm):
                     'class': 'form-control mb-4',
                     'placeholder': 'Введите пароль'
                 }))
-    
-    
+
 
 class CustomUserCreationForm(UserCreationForm):
 
@@ -96,5 +95,5 @@ class CustomUserCreationForm(UserCreationForm):
         'password1', 
         'password2', 
         'submit'
-        ]
+    ]
     
