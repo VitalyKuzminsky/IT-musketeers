@@ -1,5 +1,6 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UsernameField
 from django import forms
+from django.contrib.auth import get_user_model
 
 
 class LoginUserForm(AuthenticationForm):
@@ -96,4 +97,12 @@ class CustomUserCreationForm(UserCreationForm):
         'password2', 
         'submit'
     ]
+
+    class Meta:
+        model = get_user_model()
+        fields = [
+            'username',
+        ]
+        field_classes = {'username': UsernameField}
+
     
