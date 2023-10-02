@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView
+from mainapp.models import *
 
 
 class MainPageView(TemplateView):
@@ -7,6 +8,9 @@ class MainPageView(TemplateView):
 
 class WebPageView(TemplateView):
     template_name = 'mainapp/web.html'
+    # web_services = Services.objects.filter(category_id=2)
+    # extra_context = web_services
+    # print(Category.objects.filter(name='Web-разработка'))
 
 
 class MobilPageView(TemplateView):
@@ -17,9 +21,9 @@ class MarketingPageView(TemplateView):
     template_name = 'mainapp/marketing.html'
 
 
-class DesignPageView(TemplateView):
-    template_name = 'mainapp/design.html'
-
-
 class ContactsPageView(TemplateView):
     template_name = 'mainapp/contacts.html'
+
+
+# class DesignPageView(TemplateView):
+#     template_name = 'mainapp/design.html'

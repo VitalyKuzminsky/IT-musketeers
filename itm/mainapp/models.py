@@ -18,9 +18,11 @@ class Services(models.Model):
     """Описание модели Услуги"""
     name = models.CharField(max_length=128, verbose_name='Наименование')
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
-    custom_user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='Клиент')
-    development_time = models.DateField(help_text='Введите ориентировочный срок разработки',
-                                       verbose_name='Время разработки в днях')
+    custom_user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='Автор работы')
+    development_time = models.IntegerField(
+        help_text='Введите ориентировочный срок разработки',
+        verbose_name='Время разработки в днях'
+    )
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Стоимость услуги')
     photo = models.FileField(blank=True, null=True, upload_to='services/', verbose_name='Фото')
     deleted = models.BooleanField(default=False, verbose_name='Удалено')  # помечаем удалённым
