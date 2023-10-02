@@ -22,6 +22,7 @@ class Services(models.Model):
     development_time = models.DateField(help_text='Введите ориентировочный срок разработки',
                                        verbose_name='Время разработки в днях')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Стоимость услуги')
+    photo = models.FileField(blank=True, null=True, upload_to='services/', verbose_name='Фото')
     deleted = models.BooleanField(default=False, verbose_name='Удалено')  # помечаем удалённым
 
     def __str__(self):
@@ -44,6 +45,7 @@ class Reviews(models.Model):
     content = models.TextField(verbose_name='Текст')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name='Обновлен')
+    photo = models.FileField(blank=True, null=True, upload_to='reviews/', verbose_name='Фото')
     deleted = models.BooleanField(default=False, verbose_name='Удален')  # помечаем удалённым
 
     def __str__(self):
@@ -77,3 +79,22 @@ class Basket(models.Model):
 
     class Meta:
         verbose_name = 'Корзина'
+
+
+class WorkExample(models.Model):
+    """Описание модели Фотографии_примеров_наших_работ"""
+    services_id = models.ForeignKey(Services, on_delete=models.CASCADE, verbose_name='Услуга')
+    photo = models.FileField(blank=True, null=True, upload_to='library/', verbose_name='Фото')
+    deleted = models.BooleanField(default=False, verbose_name='Удален')  # помечаем удалённым
+
+    def __str__(self):
+        return f'{self.photo}'
+
+    class Meta:
+        verbose_name = 'Фото нашей работы'
+        verbose_name_plural = 'Фотографии наших работ'
+
+    def delete(self, *args, **kwargs):
+        """Переопределяем метод, т.к. мы не удаляем совсем, а только помечаем, как удалённое"""
+        self.deleted = True
+        self.save()
