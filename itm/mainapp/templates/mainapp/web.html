@@ -4,8 +4,51 @@
 
 <section>
     <div class="container">
-        <div class="row align-items-center">
-            ВебКа будет здесь
+        <div class="bg-holder" style="background-image:url({% static 'img/illustrations/project-bg.png' %});background-position:right;background-size:auto;">
+        </div>
+
+        <div class="row justify-content-center circle-blend circle-blend-left-project circle-warning">
+            <div class="col-lg-6 text-center mx-auto mb-6">
+              <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Web-разработка</h5>
+              <p class="mb-0">Предлагаем Вашему вниманию наши работы по созданию Web-сайтов</p>
+            </div>
+            <div class="col-xxl-9">
+              <div class="card project-card-bg mx-auto px-0">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-md-6 col-lg-4 text-center">
+                    <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Информационный сайт
+                            <img class="mb-3 mb-lg-3 img-fluid px-xl-0"  src="{% static 'img/gallery/web-01.png' %}" width="320" alt="project">
+                        </a>
+                        <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Сайт-визитка
+                            <img class="mb-3 mb-lg-0 img-fluid px-xl-0" src="{% static 'img/gallery/web-02.jpg' %}" width="320" alt="project">
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 text-center">
+                        <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Сайт-витрина
+                            <img class="mb-3 mb-lg-3 img-fluid px-xl-0" src="{% static 'img/gallery/web-03.jpg' %}" width="320" alt="project">
+                        </a>
+                        <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Лендинг
+                            <img class="mb-3 mb-lg-0 img-fluid px-xl-0" src="{% static 'img/gallery/web-04.jpg' %}" width="320" alt="project">
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 text-center">
+                        <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Интернет-магазин
+                            <img class="mb-3 mb-lg-3 img-fluid px-xl-0" src="{% static 'img/gallery/web-05.jpg' %}" width="320" alt="project">
+                        </a>
+                        <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Корпоративный портал
+                            <img class="mb-3 mb-lg-0 img-fluid px-xl-0" src="{% static 'img/gallery/web-06.png' %}" width="320" alt="project">
+                        </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto mx-auto mt-6">
+              <button class="btn btn-lg btn-klean-outline order-0" type="submit"><span class="text-gradient fw-bold">Смотреть больше  </span></button>
+            </div>
         </div>
     </div>
 </section>
