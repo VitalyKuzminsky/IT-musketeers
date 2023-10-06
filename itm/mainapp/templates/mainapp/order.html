@@ -4,14 +4,18 @@
 
 <section class="py-5 mb-8">>
     <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-xxl-5 mx-auto text-center mt-5">
+              <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-5">Заказы</h5>
+            </div>
+        </div>
         <div class="row flex-center circle-blend circle-blend-left-product circle-cyan">
-            <div class="col-auto ms-lg-auto order-md-1 text-center">Ваш заказ:<br>
+            <div class="col-auto ms-lg-auto order-md-1 text-center">Заказ клиента:<br>
                 <div class="card product-card-bg">
                   <div class="card-body p-4"><img class="img-fluid border-img" src="{% static 'img/gallery/web-01.png' %}" width="350" alt="..."></div>
                 </div>
             </div>
 
-            <h5 class="fw-bold text-gradient fs-2 mt-4 lh-sm">Клиент: <span class="text-gradient fw-bold">Смирнов Александр</span>    </h5>
             <div class="col-lg-8 mb-5">
               <div class="card card-bg p-2">
                 <div class="card-body">
@@ -29,42 +33,33 @@
                         </div>
                         <div class="col-sm-12 py-0">
                             <div class="form-control rounded-pill border-white input-box">
-                                Категория: &nbsp;&nbsp;
-                                <select>
-                                    <option value="1" selected="selected">Web-разработка</option>
-                                    <option value="2">Мобильная разработка</option>
-                                    <option value="3">Маркетинг</option>
-                                </select>
+                                Клиент: Смирнов Александр
                             </div>
                         </div>
                         <div class="col-sm-12 py-3">
                             <div class="form-control rounded-pill border-white input-box">
-                                Услуга: &nbsp;&nbsp;
-                                <select>
-                                    <option value="1" selected="selected">Информационный сайт</option>
-                                    <option value="2">Сайт-витрина</option>
-                                    <option value="3">Интернет-Магазин</option>
-                                    <option value="4">Сайт-визитка</option>
-                                    <option value="5">Лендинг</option>
-                                    <option value="6">Портал</option>
-                                </select>
+                                Категория: Web-разработка
                             </div>
                         </div>
                         <div class="col-sm-12 py-0">
                             <div class="form-control rounded-pill border-white input-box">
-                                Стоимость услуги: 200 000 &#8381;
+                                Услуга: Информационный сайт
                             </div>
                         </div>
                         <div class="col-sm-12 py-3">
                             <div class="form-control rounded-pill border-white input-box">
+                                Стоимость услуги: 200 000 &#8381;
+                            </div>
+                        </div>
+                        <div class="col-sm-12 py-0">
+                            <div class="form-control rounded-pill border-white input-box">
                                 Статус оплаты заказа: Не оплачено
                             </div>
                         </div>
-
                         <div class="row">
-                          <div class="col-sm-12 py-0">
+                          <div class="col-sm-12 py-3">
                             <div class="d-grid">
-                              <button class="btn hover-top btn-glow btn-klean rounded-pill" type="submit">Оформить и отправить счёт на email</button>
+                              <button class="btn hover-top btn-glow btn-klean rounded-pill" type="submit">Перевести в статус оплачено</button>
                             </div>
                           </div>
                         </div>

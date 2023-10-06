@@ -55,7 +55,21 @@
 
                     <div class="ps-lg-5">
 
-                        {% if user.is_active %}
+                        {% if user.is_active and user.is_staff %}
+
+                        <a class="btn btn-link text-primary fw-bold order-1 order-lg-0" href="{% url 'order' %}">
+                            Заказы
+                        </a>
+
+                        <a class="btn btn-link text-primary fw-bold order-1 order-lg-0" href="{% url 'logout' %}">
+                            Выход
+                        </a>
+
+                        {% elif user.is_active %}
+
+                        <a class="btn btn-link text-primary fw-bold order-1 order-lg-0" href="{% url 'profile' %}">
+                            Корзина
+                        </a>
 
                         <a class="btn btn-link text-primary fw-bold order-1 order-lg-0" href="{% url 'logout' %}">
                             Выход

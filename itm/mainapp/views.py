@@ -37,5 +37,13 @@ class ContactsPageView(TemplateView):
     template_name = 'mainapp/contacts.html'
 
 
+class OrderPageView(TemplateView):
+    template_name = 'mainapp/order.html'
+
+
+class ReviewPageView(TemplateView):
+    template_name = 'mainapp/review.html'
+
+
 # class DesignPageView(TemplateView):
 #     template_name = 'mainapp/design.html'

@@ -45,6 +45,9 @@
                 <div class="col-lg-7 col-xxl-5 mx-auto text-center mb-6">
                   <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Ваши отзывы</h5>
                   <p class="mb-0">Мы будем рады Вашему отзыву о выполненной работе. </p>
+                    {% if not user.is_active%}
+                        <a class="nav-link" href="{% url 'auth' %}">Авторизуйтесь пожалуйста</a>
+                    {% endif %}
                 </div>
               </div>
               <div class="row flex-center h-100 circle-blend circle-blend-left circle-primary">
@@ -140,8 +143,12 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-auto mx-auto my-5">
-                      <button class="btn btn-lg btn-klean-outline order-0 fs-0" type="submit"> <span class="text-gradient fw-bold">Смотреть другие отзывы</span></button>
+                    <div class="col-lg-7 col-xxl-5 mx-auto text-center mb-6">
+                        {% if user.is_active%}
+                          <a class="nav-link" href="{% url 'review' %}"><button class="btn btn-lg btn-klean-outline order-0 fs-0" type="submit"> <span class="text-gradient fw-bold">
+                              Оставить отзыв</span></button></a>
+                        {% endif %}
+                        <button class="btn btn-lg btn-klean-outline order-0 fs-0" type="submit"> <span class="text-gradient fw-bold">Смотреть другие отзывы</span></button>
                     </div>
                   </div>
                 </div>

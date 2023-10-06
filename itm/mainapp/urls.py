@@ -17,6 +17,8 @@ urlpatterns = [
     path('mobile-development/<int:pk>/detail', MobilDetailPageView.as_view(), name='mobile_detail'),
     path('marketing/', MarketingPageView.as_view(), name='marketing'),
     path('marketing/<int:pk>/detail', MarketingDetailPageView.as_view(), name='marketing_detail'),
+    path('order', OrderPageView.as_view(), name='order'),
+    path('review', ReviewPageView.as_view(), name='review'),
 
     # path('design/', DesignPageView.as_view(), name='design'),
 
