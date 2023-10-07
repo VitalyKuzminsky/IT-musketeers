@@ -165,3 +165,7 @@ cython_debug/
 .idea/
 /.idea/
 .vscode/
+/media/
+media/
+itm/media/
+/itm/media/
