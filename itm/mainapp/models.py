@@ -8,7 +8,7 @@ class Category(models.Model):
     """Описание модели Категория услуги"""
     name = models.CharField(max_length=128, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание')
-    images = models.FileField(blank=True, null=True, upload_to='category/', verbose_name='Фото')
+    image = models.FileField(blank=True, null=True, upload_to='category/', verbose_name='Фото')
     url_link = models.CharField(blank=True, null=True, max_length=24, verbose_name='Вставьте ссылку категории')
 
     def __str__(self):
