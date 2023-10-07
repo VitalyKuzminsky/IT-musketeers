@@ -143,10 +143,20 @@
                 </div>
                 <div class="col-lg-7 col-xxl-5 mx-auto text-center mb-6">
                     {% if user.is_active%}
-                      <a class="nav-link" href="{% url 'review' %}"><button class="btn btn-lg btn-klean-outline order-0 fs-0" type="submit"> <span class="text-gradient fw-bold">
-                          Оставить отзыв</span></button></a>
+                      <a class="nav-link" href="{% url 'review' pk=2 %}">
+                          <button class="btn btn-lg btn-klean-outline order-0 fs-0" type="submit">
+                              <span class="text-gradient fw-bold">
+                                Оставить отзыв
+                              </span>
+                          </button>
+                      </a>
                     {% endif %}
-                    <button class="btn btn-lg btn-klean-outline order-0 fs-0" type="submit"> <span class="text-gradient fw-bold">Смотреть другие отзывы</span></button>
+                    <button class="btn btn-lg btn-klean-outline order-0 fs-0" type="submit">
+                        <span class="text-gradient fw-bold">
+                            Смотреть другие отзывы
+                        </span>
+                    </button>
+
                 </div>
               </div>
             </div>
