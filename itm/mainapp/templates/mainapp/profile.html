@@ -4,77 +4,98 @@
 
 <section class="py-5 mb-8">>
     <div class="container">
+
+        <h5 class="fw-bold text-gradient fs-2 mt-4 lh-sm">Клиент: <span class="text-gradient fw-bold">Смирнов Александр</span></h5>
+    
         <div class="row flex-center circle-blend circle-blend-left-product circle-cyan">
-            <div class="col-auto ms-lg-auto order-md-1 text-center">Ваш заказ:<br>
+            <div class="col-auto ms-lg-auto order-md-1 text-center">
                 <div class="card product-card-bg">
                   <div class="card-body p-4"><img class="img-fluid border-img" src="{% static 'img/gallery/web-01.png' %}" width="350" alt="..."></div>
                 </div>
             </div>
 
-            <h5 class="fw-bold text-gradient fs-2 mt-4 lh-sm">Клиент: <span class="text-gradient fw-bold">Смирнов Александр</span>    </h5>
             <div class="col-lg-8 mb-5">
               <div class="card card-bg p-2">
                 <div class="card-body">
-                  <form>
                     <div class="row mb-3 input-group-icon">
-                        <div class="col-sm-12 py-0">
-                            <div class="form-control rounded-pill border-white input-box">
-                                Дата заказа: 6 октября 2023 г.
+                        <div class="form-control rounded-pill border-white input-box">
+                            <div class="col-sm-12 py-2">
+                                Дата оплаты: 6 октября 2023 г.
                             </div>
-                        </div>
-                        <div class="col-sm-12 py-3">
-                            <div class="form-control rounded-pill border-white input-box">
-                                id заказа: 8f720990-4e8d-42d1-af9e-c199c64a4f46
+                            <div class="col-sm-12 py-2">
+                                Категория: Web-разработка
                             </div>
-                        </div>
-                        <div class="col-sm-12 py-0">
-                            <div class="form-control rounded-pill border-white input-box">
-                                Категория: &nbsp;&nbsp;
-                                <select>
-                                    <option value="1" selected="selected">Web-разработка</option>
-                                    <option value="2">Мобильная разработка</option>
-                                    <option value="3">Маркетинг</option>
-                                </select>
+                            <div class="col-sm-12 py-2">
+                                Услуга: Информационный сайт
                             </div>
-                        </div>
-                        <div class="col-sm-12 py-3">
-                            <div class="form-control rounded-pill border-white input-box">
-                                Услуга: &nbsp;&nbsp;
-                                <select>
-                                    <option value="1" selected="selected">Информационный сайт</option>
-                                    <option value="2">Сайт-витрина</option>
-                                    <option value="3">Интернет-Магазин</option>
-                                    <option value="4">Сайт-визитка</option>
-                                    <option value="5">Лендинг</option>
-                                    <option value="6">Портал</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 py-0">
-                            <div class="form-control rounded-pill border-white input-box">
+                            <div class="col-sm-12 py-2">
                                 Стоимость услуги: 200 000 &#8381;
                             </div>
-                        </div>
-                        <div class="col-sm-12 py-3">
-                            <div class="form-control rounded-pill border-white input-box">
-                                Статус оплаты заказа: Не оплачено
+
+                            <div class="row">
+                                <div class="col-sm-12 py-0">
+                                    <div class="d-grid">
+                                        <button class="btn hover-top btn-glow btn-klean rounded-pill" disabled>
+                                            Оплачено
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="row">
-                          <div class="col-sm-12 py-0">
-                            <div class="d-grid">
-                              <button class="btn hover-top btn-glow btn-klean rounded-pill" type="submit">Оформить и отправить счёт на email</button>
-                            </div>
-                          </div>
-                        </div>
-
                     </div>
-                  </form>
                 </div>
               </div>
             </div>
         </div>
+
+
+
+        <div class="row flex-center circle-blend circle-blend-left-product circle-cyan">
+            <div class="col-auto ms-lg-auto order-md-1 text-center">
+                <div class="card product-card-bg">
+                  <div class="card-body p-4"><img class="img-fluid border-img" src="{% static 'img/gallery/web-01.png' %}" width="350" alt="..."></div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 mb-5">
+              <div class="card card-bg p-2">
+                <div class="card-body">
+                    <div class="row mb-3 input-group-icon">
+                        <div class="form-control rounded-pill border-white input-box">
+                            
+                            <div class="col-sm-12 py-2">
+                                Дата заказа: 6 октября 2023 г.
+                            </div>
+                            <div class="col-sm-12 py-2">
+                                Категория: Web-разработка
+                            </div>
+                            <div class="col-sm-12 py-2">
+                                Услуга: Информационный сайт
+                            </div>
+                            <div class="col-sm-12 py-2">
+                                Стоимость услуги: 200 000 &#8381;
+                            </div>
+                            <div class="col-sm-12 py-2">
+                                Статус оплаты заказа: Не оплачено
+                            </div>
+ 
+                            <div class="row">
+                                <div class="col-sm-12 py-0">
+                                    <div class="d-grid">
+                                        <button class="btn hover-top btn-glow btn-klean rounded-pill" type="submit">
+                                            Оплатить
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
     </div>
 </section>
 

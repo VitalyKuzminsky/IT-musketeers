@@ -1,16 +1,24 @@
+from django.views import generic
 from django.views.generic import TemplateView
 from mainapp.models import *
 
 
-class MainPageView(TemplateView):
+class MainPageView(generic.ListView):
+    extra_context = {'title': 'Главная страница'}
+    model = Category
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Главная страница'
+        context['category'] = Category.objects.all()
+        context['our_works'] = WorkExample.objects.filter(deleted=False)
+        return context
+
     template_name = 'mainapp/main.html'
 
 
 class WebPageView(TemplateView):
     template_name = 'mainapp/web.html'
-    # web_services = Services.objects.filter(category_id=2)
-    # extra_context = web_services
-    # print(Category.objects.filter(name='Web-разработка'))
 
 
 class WebDetailPageView(TemplateView):

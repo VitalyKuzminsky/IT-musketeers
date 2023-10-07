@@ -1,7 +1,7 @@
 from django.contrib import admin
 from authapp.models import CustomUser
 from mainapp.models import (
-    Category, Services, Reviews, Basket
+    Category, Services, Reviews, Basket, WorkExample
 )
 
 
@@ -27,4 +27,9 @@ class AdminReviews(admin.ModelAdmin):
 
 @admin.register(Basket)
 class AdminBasket(admin.ModelAdmin):
+    pass
+
+
+@admin.register(WorkExample)
+class AdminWorkExample(admin.ModelAdmin):
     pass

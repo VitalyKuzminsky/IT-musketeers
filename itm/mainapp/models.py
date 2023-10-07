@@ -1,3 +1,5 @@
+import datetime
+import django
 from django.db import models
 from authapp.models import CustomUser
 
@@ -5,6 +7,8 @@ from authapp.models import CustomUser
 class Category(models.Model):
     """Описание модели Категория услуги"""
     name = models.CharField(max_length=128, verbose_name='Наименование')
+    description = models.TextField(verbose_name='Описание')
+    images = models.FileField(blank=True, null=True, upload_to='category/', verbose_name='Фото')
 
     def __str__(self):
         return f'{self.name}'
@@ -23,6 +27,7 @@ class Services(models.Model):
         help_text='Введите ориентировочный срок разработки',
         verbose_name='Время разработки в днях'
     )
+    description = models.TextField(blank=True, null=True, verbose_name='Описание')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Стоимость услуги')
     photo = models.FileField(blank=True, null=True, upload_to='services/', verbose_name='Фото')
     deleted = models.BooleanField(default=False, verbose_name='Удалено')  # помечаем удалённым
@@ -46,8 +51,8 @@ class Reviews(models.Model):
     services_id = models.ForeignKey(Services, on_delete=models.CASCADE, verbose_name='Услуга')
     content = models.TextField(verbose_name='Текст')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
-    updated_at = models.DateTimeField(auto_now_add=True, verbose_name='Обновлен')
-    photo = models.FileField(blank=True, null=True, upload_to='reviews/', verbose_name='Фото')
+    updated_at = models.DateTimeField(blank=True, null=True, verbose_name='Обновлен')
+    estimation = models.CharField(blank=True, null=True, max_length=5, verbose_name='Оценка')
     deleted = models.BooleanField(default=False, verbose_name='Удален')  # помечаем удалённым
 
     def __str__(self):
@@ -65,16 +70,10 @@ class Reviews(models.Model):
 
 class Basket(models.Model):
     """Описание модели Корзина"""
-    BASKET_STATUS = [
-        ('PAYED', 'Оплачено'),
-        ('UNPAYED', 'Не оплачено')
-    ]
-
     custom_user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='Клиент')
     service_id = models.ForeignKey(Services, on_delete=models.CASCADE, verbose_name='Услуга')
-    price = models.PositiveIntegerField(verbose_name='Стоимость услуги')
-    status = models.CharField(max_length=50, choices=BASKET_STATUS, default=BASKET_STATUS[1][0],
-                              verbose_name='Статус оплаты заказа')
+    create_date = models.DateTimeField(auto_now_add=True, verbose_name='Время заявки')
+    pay_date = models.DateTimeField(null=True, blank=True, verbose_name='Время оплаты')
 
     def __str__(self):
         return f'{self.custom_user_id} {self.service_id} {self.price} {self.status}'
