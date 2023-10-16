@@ -1,4 +1,7 @@
-from django.shortcuts import get_object_or_404
+from audioop import reverse
+
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect
 from django.views import generic
 from django.views.generic import TemplateView, DetailView
 from mainapp.models import *
@@ -68,6 +71,7 @@ class ServiceDetailPageView(DetailView):
 
 class ReviewPageView(TemplateView):
     template_name = 'mainapp/review.html'
+    extra_context = {'title': 'Оставить отзыв'}
     model = Reviews
 
     def get_context_data(self, **kwargs):
@@ -76,8 +80,23 @@ class ReviewPageView(TemplateView):
         return context_data
 
     def post(self, request, *args, **kwargs):
+        if all((request.POST.get('rating'), request.POST.get('text_content'))):
+            new_review = Reviews
+            data_add = {
+                'custom_user_id': CustomUser.objects.filter(pk=request.user.id)[0],
+                'services_id': Services.objects.filter(pk=self.kwargs.get('pk'))[0],
+                'content': request.POST.get('text_content'),
+                'estimation': request.POST.get('rating')
+            }
+            new_review.objects.create(**data_add)
 
-        return self.get(request, *args, **kwargs)
+            return redirect('service_detail', pk=self.kwargs.get('pk'))
+        else:
+            context_data = super().get_context_data(**kwargs)
+            context_data['service'] = get_object_or_404(Services, pk=self.kwargs.get('pk'))
+            context_data['message_err'] = 'Заполните все поля'
+
+            return redirect('review', pk=self.kwargs.get('pk'))
 
 
 class ContactsPageView(TemplateView):

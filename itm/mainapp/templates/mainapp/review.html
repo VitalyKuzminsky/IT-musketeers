@@ -19,45 +19,54 @@
             <div class="col-lg-8 mb-5">
               <div class="card card-bg p-2">
                 <div class="card-body">
-                  <form>
+                  <div class="alert">УВЫ И АХ {{ message_err }}</div>
+                  <form method="POST">
+                    {% csrf_token %}
                     <div class="row mb-3 input-group-icon">
+
                         <div class="col-sm-12 py-0">
                             <div class="form-control rounded-pill border-white input-box">
                                 Категория: {{ service.category_id }}
                             </div>
                         </div>
+
                         <div class="col-sm-12 py-3">
                             <div class="form-control rounded-pill border-white input-box">
                                 Услуга: {{ service.name }}
                             </div>
                         </div>
+
                         <div class="col-sm-12 py-0">
-                            <div class="form-control rounded-pill border-white input-box">
-                                Рейтинг:
+                            <div class="form-control rounded-pill border-white input-box">Рейтинг:
+
                                 <div class="rating">
-
-                                  <input type="radio" id="star-1" name="rating" value="1">
-                                  <label for="star-1"></label>
-
-                                  <input type="radio" id="star-2" name="rating" value="2">
-                                  <label for="star-2"></label>
-
-                                  <input type="radio" id="star-3" name="rating" value="3">
-                                  <label for="star-3"></label>
+                                  <input type="radio" id="star-5" name="rating" value="5">
+                                  <label for="star-5"></label>
 
                                   <input type="radio" id="star-4" name="rating" value="4">
                                   <label for="star-4"></label>
 
-                                  <input type="radio" id="star-5" name="rating" value="5">
-                                  <label for="star-5"></label>
+                                  <input type="radio" id="star-3" name="rating" value="3">
+                                  <label for="star-3"></label>
 
+                                  <input type="radio" id="star-2" name="rating" value="2">
+                                  <label for="star-2"></label>
+
+                                  <input type="radio" id="star-1" name="rating" value="1">
+                                  <label for="star-1"></label>
                                 </div>
+
                             </div>
 
                         </div>
+
                         <div class="col-sm-12 py-3">
-                            <textarea class="form-control rounded-3 border-white input-box" id="floatingTextarea2" placeholder="Ваше сообщение" style="height: 150px"></textarea>
+                            <textarea 
+                              name="text_content" 
+                              class="form-control rounded-3 border-white">
+                            </textarea>
                         </div>
+
                         <div class="row">
                           <div class="col-sm-12 py-0">
                             <div class="d-grid">
@@ -67,6 +76,7 @@
                         </div>
 
                     </div>
+
                   </form>
                 </div>
               </div>
