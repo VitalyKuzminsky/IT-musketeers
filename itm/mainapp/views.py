@@ -62,7 +62,22 @@ class ServiceDetailPageView(DetailView):
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         context_data['service'] = get_object_or_404(Services, pk=self.kwargs.get('pk'))
+        context_data['reviews'] = Reviews.objects.filter(services_id=self.kwargs.get('pk'))
         return context_data
+
+
+class ReviewPageView(TemplateView):
+    template_name = 'mainapp/review.html'
+    model = Reviews
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['service'] = get_object_or_404(Services, pk=self.kwargs.get('pk'))
+        return context_data
+
+    def post(self, request, *args, **kwargs):
+
+        return self.get(request, *args, **kwargs)
 
 
 class ContactsPageView(TemplateView):
@@ -71,10 +86,6 @@ class ContactsPageView(TemplateView):
 
 class OrderPageView(TemplateView):
     template_name = 'mainapp/order.html'
-
-
-class ReviewPageView(TemplateView):
-    template_name = 'mainapp/review.html'
 
 
 class MobilDetailPageView(TemplateView):

@@ -12,7 +12,7 @@
         <div class="row flex-center circle-blend circle-blend-left-product circle-cyan">
             <div class="col-auto ms-lg-auto order-md-1 text-center">Вы хотите оставить отзыв для этой работы:<br>
                 <div class="card product-card-bg">
-                  <div class="card-body p-4"><img class="img-fluid border-img" src="{% static 'img/gallery/web-01.png' %}" width="350" alt="..."></div>
+                  <div class="card-body p-4"><img class="img-fluid border-img" src="/media/{{ service.photo }}" width="350" alt="{{ service.photo }}"></div>
                 </div>
             </div>
 
@@ -23,22 +23,12 @@
                     <div class="row mb-3 input-group-icon">
                         <div class="col-sm-12 py-0">
                             <div class="form-control rounded-pill border-white input-box">
-                                Дата отзыва: 06.10.2023 13:09
+                                Категория: {{ service.category_id }}
                             </div>
                         </div>
                         <div class="col-sm-12 py-3">
                             <div class="form-control rounded-pill border-white input-box">
-                                Имя: Александр
-                            </div>
-                        </div>
-                        <div class="col-sm-12 py-0">
-                            <div class="form-control rounded-pill border-white input-box">
-                                Категория: Web-разработка
-                            </div>
-                        </div>
-                        <div class="col-sm-12 py-3">
-                            <div class="form-control rounded-pill border-white input-box">
-                                Услуга: Информационный сайт
+                                Услуга: {{ service.name }}
                             </div>
                         </div>
                         <div class="col-sm-12 py-0">
