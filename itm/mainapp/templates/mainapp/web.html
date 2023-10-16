@@ -16,30 +16,53 @@
               <div class="card project-card-bg mx-auto px-0">
                 <div class="card-body">
                   <div class="row align-items-center">
-                    <div class="col-12 col-md-6 col-lg-4 text-center">
+
+                    {% for i in services %}
+
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <a class="nav-link" href="{% url 'service_detail' pk=i.id %}">{{ i.name }}
+                                <img class="my-5 img-fluid" src="/media/{{ i.photo }}" alt="{{ i.photo }}">
+                            </a>
+                        </div>
+
+                    {% endfor %}
+<!-- 
+                    <div class="col-12 col-md-6 col-lg-4">
                         <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Информационный сайт
-                            <img class="mb-3 mb-lg-3 img-fluid px-xl-0"  src="{% static 'img/gallery/web-01.png' %}" width="320" alt="project">
                         </a>
+                        <img class="mb-3 mb-lg-3 img-fluid px-xl-0"  src="{% static 'img/gallery/web-01.png' %}" width="320" alt="project">
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
                         <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Сайт-визитка
                             <img class="mb-3 mb-lg-0 img-fluid px-xl-0" src="{% static 'img/gallery/web-02.jpg' %}" width="320" alt="project">
                         </a>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4 text-center">
+
+                    <div class="col-12 col-md-6 col-lg-4">
                         <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Сайт-витрина
                             <img class="mb-3 mb-lg-3 img-fluid px-xl-0" src="{% static 'img/gallery/web-03.jpg' %}" width="320" alt="project">
                         </a>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
                         <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Лендинг
                             <img class="mb-3 mb-lg-0 img-fluid px-xl-0" src="{% static 'img/gallery/web-04.jpg' %}" width="320" alt="project">
                         </a>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4 text-center">
+
+                    <div class="col-12 col-md-6 col-lg-4">
                         <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Интернет-магазин
                             <img class="mb-3 mb-lg-3 img-fluid px-xl-0" src="{% static 'img/gallery/web-05.jpg' %}" width="320" alt="project">
                         </a>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
                         <a class="nav-link" href="{% url 'web_detail' pk='1' %}">Корпоративный портал
                             <img class="mb-3 mb-lg-0 img-fluid px-xl-0" src="{% static 'img/gallery/web-06.png' %}" width="320" alt="project">
                         </a>
-                    </div>
+                    </div> -->
+
                   </div>
                 </div>
               </div>

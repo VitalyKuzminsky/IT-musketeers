@@ -16,14 +16,26 @@
               <div class="card project-card-bg mx-auto px-0">
                 <div class="card-body">
                   <div class="row align-items-center">
+
+                    {% for i in services %}
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <a class="nav-link" href="{% url 'service_detail' pk=i.id %}">{{ i.name }}
+                                <img class="my-5 img-fluid" src="/media/{{ i.photo }}" alt="{{ i.photo }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+
+                    <!-- 
                     <div class="col-12 col-md-6 col-lg-4 text-center">
-                    <a class="nav-link" href="{% url 'marketing_detail' pk='1' %}">7 направлений маркетинга
+
+                        <a class="nav-link" href="{% url 'marketing_detail' pk='1' %}">7 направлений маркетинга
                             <img class="mb-3 mb-lg-3 img-fluid px-xl-0"  src="{% static 'img/gallery/mark-01.png' %}" width="320" alt="project">
                         </a>
                         <a class="nav-link" href="{% url 'marketing_detail' pk='1' %}">8 направлений маркетинга
                             <img class="mb-3 mb-lg-0 img-fluid px-xl-0" src="{% static 'img/gallery/mark-05.png' %}" width="320" alt="project">
                         </a>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4 text-center">
                         <a class="nav-link" href="{% url 'marketing_detail' pk='1' %}">Email-маркетинг
                             <img class="mb-3 mb-lg-3 img-fluid px-xl-0" src="{% static 'img/gallery/mark-03.jpg' %}" width="320" alt="project">
@@ -32,6 +44,7 @@
                             <img class="mb-3 mb-lg-0 img-fluid px-xl-0" src="{% static 'img/gallery/mark-04.png' %}" width="320" alt="project">
                         </a>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4 text-center">
                         <a class="nav-link" href="{% url 'marketing_detail' pk='1' %}">Методология разработки тактики
                             <img class="mb-3 mb-lg-3 img-fluid px-xl-0" src="{% static 'img/gallery/mark-02.jpg' %}" width="320" alt="project">
@@ -39,7 +52,8 @@
                         <a class="nav-link" href="{% url 'marketing_detail' pk='1' %}">Входящий маркетинг
                             <img class="mb-3 mb-lg-0 img-fluid px-xl-0" src="{% static 'img/gallery/mark-06.jpg' %}" width="320" alt="project">
                         </a>
-                    </div>
+                    </div> -->
+
                   </div>
                 </div>
               </div>
