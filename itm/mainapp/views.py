@@ -1,9 +1,11 @@
 from audioop import reverse
-
-from django.http import HttpResponseRedirect
+from datetime import datetime as dt
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.views import generic
 from django.views.generic import TemplateView, DetailView
+
+from mainapp.data_library import get_orders_filter
 from mainapp.models import *
 
 
@@ -105,6 +107,47 @@ class ContactsPageView(TemplateView):
 
 class OrderPageView(TemplateView):
     template_name = 'mainapp/order.html'
+    extra_context = {'title': 'Заказы'}
+    model = Basket
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['orders'] = Basket.objects.all()
+        context_data['statuses'] = {
+            'COMPLETED': 'Завершен',
+            'IN_PROCCESS': 'В разработке',
+            'DID_NOT_START': 'Не приступалось'
+        }
+        context_data['authors'] = CustomUser.objects.filter(is_superuser=True)
+        context_data['clients'] = CustomUser.objects.filter(is_superuser=False)
+        return context_data
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('type') == 'status_service':
+            new_status = request.POST.get('status')
+            basket = Basket.objects.filter(pk=request.POST.get('order_id'))
+            basket.update(status_completed=new_status)
+            return JsonResponse({'status': 'OK'})
+
+        if request.POST.get('type') == 'filter_result':
+            skip_list = ['csrfmiddlewaretoken', 'type']
+            filter_dict = {key: val for key, val in request.POST.items() if key not in skip_list and val}
+
+            result_dict = get_orders_filter(filter_data=filter_dict)
+            result_js = []
+            if result_dict:
+                for order in result_dict:
+                    print(type(order[5]))
+                    result_js.append({
+                        'id': order[0],
+                        'author': order[1],
+                        'custom_user_id': order[2],
+                        'service_id': order[3],
+                        'create_date': order[4],
+                        'pay_date': order[5],
+                        'status_completed': order[6]
+                    })
+            return JsonResponse({'res': result_js})
 
 
 class MobilDetailPageView(TemplateView):

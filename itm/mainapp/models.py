@@ -70,14 +70,20 @@ class Reviews(models.Model):
 
 
 class Basket(models.Model):
+    STATUS = (
+        ('DID_NOT_START', 'Не приступалось'),
+        ('IN_PROCCESS', 'В разработке'),
+        ('COMPLETED', 'Завершен')
+    )
     """Описание модели Корзина"""
     custom_user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='Клиент')
     service_id = models.ForeignKey(Services, on_delete=models.CASCADE, verbose_name='Услуга')
     create_date = models.DateTimeField(auto_now_add=True, verbose_name='Время заявки')
     pay_date = models.DateTimeField(null=True, blank=True, verbose_name='Время оплаты')
+    status_completed = models.CharField(choices=STATUS, default=STATUS[0][0], max_length=24, verbose_name='Отметка об окончании работы')
 
     def __str__(self):
-        return f'{self.custom_user_id} {self.service_id} {self.price} {self.status}'
+        return f'{self.custom_user_id} {self.service_id}'
 
     class Meta:
         verbose_name = 'Корзина'
