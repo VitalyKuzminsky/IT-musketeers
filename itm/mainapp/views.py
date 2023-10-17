@@ -24,8 +24,8 @@ class MainPageView(generic.ListView):
 
 
 class WebPageView(TemplateView):
-    model = Category.objects.filter(name='Web-Разработка')
-    extra_context = {'title': model[0]}
+    model = Category
+    extra_context = {'title': 'Web-Разработка'}
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,8 +37,8 @@ class WebPageView(TemplateView):
 
 
 class MobilPageView(TemplateView):
-    model = Category.objects.filter(name='Мобильная Разработка')
-    extra_context = {'title': model[0]}
+    model = Category
+    extra_context = {'title': 'Мобильная Разработка'}
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -49,8 +49,8 @@ class MobilPageView(TemplateView):
 
 
 class MarketingPageView(TemplateView):
-    model = Category.objects.filter(name='Маркетинг')
-    extra_context = {'title': model[0]}
+    model = Category
+    extra_context = {'title': 'Маркетинг'}
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
