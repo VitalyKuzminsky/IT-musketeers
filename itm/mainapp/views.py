@@ -70,6 +70,15 @@ class ServiceDetailPageView(DetailView):
         context_data['reviews'] = Reviews.objects.filter(services_id=self.kwargs.get('pk'))
         return context_data
 
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('type') == 'make_order':
+            new_order = Basket
+            new_order.objects.create(
+                custom_user_id=CustomUser.objects.filter(pk=request.user.id)[0],
+                service_id=Services.objects.filter(pk=self.kwargs.get('pk'))[0]
+            )
+            return JsonResponse({'status': 'OK'})
+
 
 class ReviewPageView(TemplateView):
     template_name = 'mainapp/review.html'
@@ -137,7 +146,6 @@ class OrderPageView(TemplateView):
             result_js = []
             if result_dict:
                 for order in result_dict:
-                    print(type(order[5]))
                     result_js.append({
                         'id': order[0],
                         'author': order[1],
