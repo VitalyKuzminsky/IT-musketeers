@@ -3,98 +3,68 @@
 {% block content %}
 
 <section class="py-5 mb-8">>
-    <div class="container">
+    <div class="container cust-marg">
+        <h5 class="fw-bold text-gradient fs-2 mt-4 lh-sm">Клиент:
+            <span class="text-gradient fw-bold">
+                {{ user_name }}
+            </span>
+        </h5>
 
-        <h5 class="fw-bold text-gradient fs-2 mt-4 lh-sm">Клиент: <span class="text-gradient fw-bold">Смирнов Александр</span></h5>
-    
-        <div class="row flex-center circle-blend circle-blend-left-product circle-cyan">
-            <div class="col-auto ms-lg-auto order-md-1 text-center">
-                <div class="card product-card-bg">
-                  <div class="card-body p-4"><img class="img-fluid border-img" src="{% static 'img/gallery/web-01.png' %}" width="350" alt="..."></div>
+        {% for purchase in filtered_objects %}
+        <section class="basket_product">
+            <article class="bottom_layer">
+                <div>
+                    <article>
+                        <p>Дата оплаты:
+
+                            {% if purchase.pay_date != NULL %}
+                            {{ purchase.pay_date|date:'d E Y' }} г.
+                            {% else %}
+                            <b class="warn">Не оплачено</b>
+                            {% endif %}
+
+                        </p>
+                        <p>Категория: {{ purchase.service_id.category_id.name }}</p>
+                        <p>Услуга: {{ purchase.service_id.name }}</p>
+                        <p>Стоимость услуги: {{ purchase.service_id.price }} &#8381;</p>
+                    </article>
+
+
+
+                    {% for stat in purchase.STATUS %}
+                    {% if purchase.status_completed in stat %}
+
+
+                    {% if purchase.pay_date != NULL %}
+                    <button class="btn hover-top btn-glow btn-klean rounded-pill" disabled>
+                        {{ stat.1 }}
+                    </button>
+
+                    {% else %}
+
+                    <button class="btn hover-top btn-glow btn-klean rounded-pill" type="submit">
+                        Оплатить
+                    </button>
+
+                    {% endif %}
+
+                    {% endif %}
+                    {% endfor %}
+
+
+
                 </div>
-            </div>
+            </article>
 
-            <div class="col-lg-8 mb-5">
-              <div class="card card-bg p-2">
-                <div class="card-body">
-                    <div class="row mb-3 input-group-icon">
-                        <div class="form-control rounded-pill border-white input-box">
-                            <div class="col-sm-12 py-2">
-                                Дата оплаты: 6 октября 2023 г.
-                            </div>
-                            <div class="col-sm-12 py-2">
-                                Категория: Web-разработка
-                            </div>
-                            <div class="col-sm-12 py-2">
-                                Услуга: Информационный сайт
-                            </div>
-                            <div class="col-sm-12 py-2">
-                                Стоимость услуги: 200 000 &#8381;
-                            </div>
+            <article class="bottom_layer cover_img">
+                <div><img src="{{MEDIA_URL}}{{ purchase.service_id.photo }}" alt=""></div>
+            </article>
 
-                            <div class="row">
-                                <div class="col-sm-12 py-0">
-                                    <div class="d-grid">
-                                        <button class="btn hover-top btn-glow btn-klean rounded-pill" disabled>
-                                            Оплачено
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-        </div>
+        </section>
 
+        <hr class="basket_hr">
 
-
-        <div class="row flex-center circle-blend circle-blend-left-product circle-cyan">
-            <div class="col-auto ms-lg-auto order-md-1 text-center">
-                <div class="card product-card-bg">
-                  <div class="card-body p-4"><img class="img-fluid border-img" src="{% static 'img/gallery/web-01.png' %}" width="350" alt="..."></div>
-                </div>
-            </div>
-
-            <div class="col-lg-8 mb-5">
-              <div class="card card-bg p-2">
-                <div class="card-body">
-                    <div class="row mb-3 input-group-icon">
-                        <div class="form-control rounded-pill border-white input-box">
-                            
-                            <div class="col-sm-12 py-2">
-                                Дата заказа: 6 октября 2023 г.
-                            </div>
-                            <div class="col-sm-12 py-2">
-                                Категория: Web-разработка
-                            </div>
-                            <div class="col-sm-12 py-2">
-                                Услуга: Информационный сайт
-                            </div>
-                            <div class="col-sm-12 py-2">
-                                Стоимость услуги: 200 000 &#8381;
-                            </div>
-                            <div class="col-sm-12 py-2">
-                                Статус оплаты заказа: Не оплачено
-                            </div>
- 
-                            <div class="row">
-                                <div class="col-sm-12 py-0">
-                                    <div class="d-grid">
-                                        <button class="btn hover-top btn-glow btn-klean rounded-pill" type="submit">
-                                            Оплатить
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-
-        </div>
+        {% endfor %}
 
     </div>
 </section>
