@@ -18,43 +18,47 @@
 
     <link href="{% static 'css/theme.css' %} " rel="stylesheet" />
 
+    <link href="{% static 'css/cust-style.css' %} " rel="stylesheet" />
+
     <!-- JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js"
+        type="text/javascript"></script>
     <style>
         .rating {
-          width: 200px;
-          height: 40px;
-          display: flex;
-          flex-direction: row-reverse;
-          align-items: center;
-          justify-content: flex-end;
+            width: 200px;
+            height: 40px;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: flex-end;
         }
 
         .rating:not(:checked)>input {
-          display: none;
+            display: none;
         }
 
         .rating:not(:checked)>label {
-          width: 40px;
-          cursor: pointer;
-          font-size: 40px;
-          color: lightgrey;
-          text-align: center;
-          line-height: 1;
+            width: 40px;
+            cursor: pointer;
+            font-size: 40px;
+            color: lightgrey;
+            text-align: center;
+            line-height: 1;
         }
 
         .rating:not(:checked)>label:before {
-          content: '★';
+            content: '★';
         }
 
         .rating>input:checked~label {
-          color: gold;
+            color: gold;
         }
 
         .rating:not(:checked)>label:hover,
         .rating:not(:checked)>label:hover~label {
-          color: gold;
+            color: gold;
         }
 
         .rating>input:checked+label:hover,
@@ -62,7 +66,7 @@
         .rating>input:checked~label:hover,
         .rating>input:checked~label:hover~label,
         .rating>label:hover~input:checked~label {
-          color: gold;
+            color: gold;
         }
     </style>
 </head>
@@ -86,33 +90,33 @@
                             <a class="nav-link
                                 {% if request.resolver_match.url_name == 'main_page' %}
                                 active
-                                {% endif %}"
-                                aria-current="page" href="/">Главная</a></li>
+                                {% endif %}" aria-current="page" href="/">Главная</a>
+                        </li>
 
                         <li class="nav-item px-2" data-anchor="data-anchor">
                             <a class="nav-link
                                 {% if 'web' in request.resolver_match.url_name %}
                                 active
-                                {% endif %}"
-                                href="{% url 'web' %}">Web-Разработка</a></li>
+                                {% endif %}" href="{% url 'web' %}">Web-Разработка</a>
+                        </li>
                         <li class="nav-item px-2" data-anchor="data-anchor">
                             <a class="nav-link
                                 {% if 'mobile' in request.resolver_match.url_name %}
                                 active
-                                {% endif %}"
-                                href="{% url 'mobile' %}">Мобильная Разработка</a></li>
+                                {% endif %}" href="{% url 'mobile' %}">Мобильная Разработка</a>
+                        </li>
                         <li class="nav-item px-2" data-anchor="data-anchor">
                             <a class="nav-link
                                 {% if 'marketing' in request.resolver_match.url_name %}
                                 active
-                                {% endif %}"
-                                href="{% url 'marketing' %}">Маркетинг</a></li>
+                                {% endif %}" href="{% url 'marketing' %}">Маркетинг</a>
+                        </li>
                         <li class="nav-item px-2" data-anchor="data-anchor">
                             <a class="nav-link
                                 {% if request.resolver_match.url_name == 'contacts' %}
                                 active
-                                {% endif %}"
-                                href="{% url 'contacts' %}">Контакты</a></li>
+                                {% endif %}" href="{% url 'contacts' %}">Контакты</a>
+                        </li>
                     </ul>
 
                     <div class="ps-lg-5">
@@ -162,17 +166,21 @@
         {% endblock content %}
 
     </main>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+
     <script>
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
     </script>
-    
+
     <script>
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))

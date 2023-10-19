@@ -1,0 +1,86 @@
+.basket_product {
+  max-width: 1200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 0px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.basket_product .bottom_layer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(0.625rem);
+          backdrop-filter: blur(0.625rem);
+  border: 0.125rem solid rgba(255, 255, 255, 0.3);
+  padding: 8px;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 45px;
+  min-height: 200px;
+}
+.basket_product .bottom_layer.cover_img {
+  max-width: 400px;
+}
+.basket_product .bottom_layer.cover_img div {
+  padding: 0px;
+  border: 2px solid;
+}
+.basket_product .bottom_layer.cover_img div img {
+  max-width: 100%;
+  border-radius: 25px;
+}
+.basket_product .bottom_layer div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 15px;
+  width: 100%;
+  background-color: #f4f6fa;
+  border-color: #fff !important;
+  border: 1px solid #7E92B2;
+  border-radius: 25px;
+  padding: 15px;
+}
+.basket_product .bottom_layer div .warn {
+  color: rgb(213, 60, 60) !important;
+}
+
+.basket_hr {
+  color: rgba(144, 168, 204, 0.368627451);
+  margin: 40px 0px;
+}
+
+@media screen and (max-width: 1199px) {
+  .basket_product {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -ms-flex-line-pack: center;
+        align-content: center;
+  }
+  .basket_product .cover_img {
+    max-width: 600px !important;
+    margin-bottom: 15px;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .cust-marg {
+    margin-top: 75px;
+  }
+}/*# sourceMappingURL=cust-style.css.map */

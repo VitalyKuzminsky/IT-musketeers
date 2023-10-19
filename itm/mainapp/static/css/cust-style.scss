@@ -1,0 +1,78 @@
+$BottomLayerColor: rgba(255, 255, 255, 0.2); // Цвет подложки
+
+.basket_product {
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+
+    .bottom_layer {
+        display: flex;
+        background-color: $BottomLayerColor;
+        backdrop-filter: blur(0.625rem);
+        border: 0.125rem solid rgba(255, 255, 255, 0.3);
+        padding: 8px;
+        max-width: 600px;
+        width: 100%;
+        border-radius: 45px;
+
+        min-height: 200px;
+
+        &.cover_img {
+            max-width: 400px;
+
+            div {
+                padding: 0px;
+                border: 2px solid;
+
+                img {
+                    max-width: 100%;
+                    border-radius: 25px;
+                }
+            }
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 15px;
+            width: 100%;
+            background-color: #f4f6fa;
+            border-color: #fff !important;
+            border: 1px solid #7E92B2;
+            border-radius: 25px;
+            padding: 15px;
+
+            .warn {
+                color: rgb(213, 60, 60) !important;
+            }
+        }
+    }
+}
+
+.basket_hr {
+    color: #90A8CC5E;
+    margin: 40px 0px;
+}
+
+@media screen and (max-width:1199px) {
+    .basket_product {
+        flex-direction: column-reverse;
+        align-content: center;
+
+        .cover_img {
+            max-width: 600px !important;
+            margin-bottom: 15px;
+        }
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .cust-marg {
+        margin-top: 75px;
+    }
+}
