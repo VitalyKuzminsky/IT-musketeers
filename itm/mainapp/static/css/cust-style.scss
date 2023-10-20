@@ -1,5 +1,14 @@
 $BottomLayerColor: rgba(255, 255, 255, 0.2); // Цвет подложки
 
+.block-button-auth {
+    display: flex;
+    flex-direction: column;
+
+    a {
+        margin-bottom: 5px;
+    }
+}
+
 .basket_product {
     max-width: 1200px;
     display: flex;

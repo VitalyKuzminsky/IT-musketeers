@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<section class="py-5 mb-8">>
+<section class="mb-8">>
     <div class="container">
 
         <div class="row">
@@ -21,7 +21,7 @@
 
                             <option value="">Все разработчики</option>
                             {% for author in authors %}
-                                <option value="{{ author.id }}">{{ author.username }}</option>
+                            <option value="{{ author.id }}">{{ author.username }}</option>
                             {% endfor %}
 
                         </select>
@@ -33,7 +33,7 @@
 
                             <option value="">Все клиенты</option>
                             {% for client in clients %}
-                                <option value="{{ client.id }}">{{ client.username }}</option>
+                            <option value="{{ client.id }}">{{ client.username }}</option>
                             {% endfor %}
 
                         </select>
@@ -69,62 +69,65 @@
                 </a>
 
             </form>
-        </div>        
+        </div>
 
         <table class="table table-hover text-center">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Исполнитель</th>
-                <th scope="col">Клиент</th>
-                <th scope="col">Услуга</th>
-                <th scope="col">Дата заказа</th>
-                <th scope="col">Статус оплаты</th>
-                <th scope="col">
-                    <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Вы можете изменить статус заказа">
-                        Статус завершения
-                    </span>
-                </th>
-              </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Исполнитель</th>
+                    <th scope="col">Клиент</th>
+                    <th scope="col">Услуга</th>
+                    <th scope="col">Дата заказа</th>
+                    <th scope="col">Статус оплаты</th>
+                    <th scope="col">
+                        <span data-bs-toggle="popover" data-bs-trigger="hover"
+                            data-bs-content="Вы можете изменить статус заказа">
+                            Статус завершения
+                        </span>
+                    </th>
+                </tr>
             </thead>
             <tbody id="result_table">
 
                 {% for order in orders %}
 
-                    <tr>
-                        <th scope="row">{{ order.id }}</th>
-                        <td>{{ order.service_id.custom_user_id }}</td>
-                        <td>{{ order.custom_user_id }}</td>
-                        <td>{{ order.service_id.name }}</td>
-                        <td>{{ order.create_date|str_date }}</td>
-                        <td>
-                            {% if order.pay_date %}
-                                <span class="badge bg-success text-bg-outline-success d-flex align-items-center justify-content-center rounded-pill">
-                                    ОПЛАЧЕНО<br>{{ order.pay_date|str_date }}
-                                </span>
+                <tr>
+                    <th scope="row">{{ order.id }}</th>
+                    <td>{{ order.service_id.custom_user_id }}</td>
+                    <td>{{ order.custom_user_id }}</td>
+                    <td>{{ order.service_id.name }}</td>
+                    <td>{{ order.create_date|str_date }}</td>
+                    <td>
+                        {% if order.pay_date %}
+                        <span
+                            class="badge bg-success text-bg-outline-success d-flex align-items-center justify-content-center rounded-pill">
+                            ОПЛАЧЕНО<br>{{ order.pay_date|str_date }}
+                        </span>
+                        {% else %}
+                        <span
+                            class="badge bg-warning d-flex align-items-center justify-content-center rounded-pill ms-auto my-auto">
+                            ОЖИДАЕТ<br>ОПЛАТЫ
+                        </span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <select class="form-select change_status" data-id="{{ order.id }}">
+                            {% for key, val in statuses.items %}
+
+                            {% if key == order.status_completed %}
+                            <option value="{{ key }}" selected>{{ val }}</option>
                             {% else %}
-                                <span class="badge bg-warning d-flex align-items-center justify-content-center rounded-pill ms-auto my-auto">
-                                    ОЖИДАЕТ<br>ОПЛАТЫ
-                                </span>
+                            <option value="{{ key }}">{{ val }}</option>
                             {% endif %}
-                        </td>
-                        <td>
-                            <select class="form-select change_status" data-id="{{ order.id }}">
-                                {% for key, val in statuses.items %}
 
-                                    {% if key == order.status_completed %}
-                                        <option value="{{ key }}" selected>{{ val }}</option>
-                                    {% else %}
-                                        <option value="{{ key }}">{{ val }}</option>
-                                    {% endif %}
-
-                                {% endfor %}
-                            </select>
-                        </td>
-                    </tr>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
 
                 {% endfor %}
-<!-- 
+                <!-- 
                 <tr>
                     <th scope="row">1</th>
                     <td>
@@ -179,9 +182,9 @@
                 </tr> -->
 
             </tbody>
-          </table>
+        </table>
 
-<!-- 
+        <!-- 
         <div class="row flex-center">
             <div class="col-lg-8 mb-5">
                 <div class="p-2">
@@ -266,12 +269,12 @@
         }
     };
 
-    const options_list = 
-    [
-        ["COMPLETED", "Завершен"],
-        ["IN_PROCCESS", "В разработке"],
-        ["DID_NOT_START", "Не приступалось"]
-    ];
+    const options_list =
+        [
+            ["COMPLETED", "Завершен"],
+            ["IN_PROCCESS", "В разработке"],
+            ["DID_NOT_START", "Не приступалось"]
+        ];
 
     function getResult() {
         $.ajax({
@@ -285,22 +288,22 @@
                 pay_status: $('#pay_status').val(),
                 status_completed: $('#status_completed').val()
             }
-        }).then(function(result) {
+        }).then(function (result) {
             $('#result_table').empty();
             var dict_result = result.res;
             var tables = '';
 
-            for(let i=0; dict_result.length > i; i++){
+            for (let i = 0; dict_result.length > i; i++) {
 
-                var pay_date 
-                if(dict_result[i].pay_date){
-                    pdate = new Date(dict_result[i].pay_date).toLocaleString("ru", {year: 'numeric', month: 'numeric', day: 'numeric', hour:'numeric', minute: "numeric", second:"numeric"})
+                var pay_date
+                if (dict_result[i].pay_date) {
+                    pdate = new Date(dict_result[i].pay_date).toLocaleString("ru", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: "numeric", second: "numeric" })
                     pay_date = `
                         <span class="badge bg-success text-bg-outline-success d-flex align-items-center justify-content-center rounded-pill">
                             ОПЛАЧЕНО<br>${pdate}
                         </span>
                     `;
-                }else{
+                } else {
                     pay_date = `
                         <span class="badge bg-warning d-flex align-items-center justify-content-center rounded-pill ms-auto my-auto">
                             ОЖИДАЕТ<br>ОПЛАТЫ
@@ -310,19 +313,19 @@
 
                 var option_params = '';
 
-                for(let k=0; options_list.length > k; k++){     
-                    if(options_list[k][0] == dict_result[i].status_completed){
+                for (let k = 0; options_list.length > k; k++) {
+                    if (options_list[k][0] == dict_result[i].status_completed) {
                         option_params += `<option selected value="${options_list[k][0]}">${options_list[k][1]}</option>`;
-                    }else{
+                    } else {
                         option_params += `<option value="${options_list[k][0]}">${options_list[k][1]}</option>`;
                     }
                 };
-                
+
                 var pay_status = `
                     <select class="form-select change_status" id="order_complate_status_${dict_result[i].id}">
                         ${option_params}
                     </select>`;
-                var cdate = new Date(dict_result[i].create_date).toLocaleString("ru", {year: 'numeric', month: 'numeric', day: 'numeric', hour:'numeric', minute: "numeric", second:"numeric"})
+                var cdate = new Date(dict_result[i].create_date).toLocaleString("ru", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: "numeric", second: "numeric" })
                 var line = `
                 <tr>
                     <th scope="row">${dict_result[i].id}</th>
@@ -335,12 +338,12 @@
                 </tr>`;
                 $('#result_table').append(line);
             }
-        }).catch(function(err) {
+        }).catch(function (err) {
             var x = 1;
         });
     };
 
-    $('.change_status').on('change', function(event){
+    $('.change_status').on('change', function (event) {
         $.ajax({
             url: url,
             method: 'POST',
@@ -350,9 +353,9 @@
                 order_id: event.currentTarget.getAttribute('data-id'),
                 status: event.currentTarget.value
             }
-        }).then(function(result) {
+        }).then(function (result) {
             var x = 1;
-        }).catch(function(err){
+        }).catch(function (err) {
             var x = 0;
         })
     })
