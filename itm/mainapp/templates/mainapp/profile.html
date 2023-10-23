@@ -28,31 +28,21 @@
                         <p>Услуга: {{ purchase.service_id.name }}</p>
                         <p>Стоимость услуги: {{ purchase.service_id.price }} &#8381;</p>
                     </article>
-
-
-
-                    {% for stat in purchase.STATUS %}
-                    {% if purchase.status_completed in stat %}
-
-
-                    {% if purchase.pay_date != NULL %}
-                    <button class="btn hover-top btn-glow btn-klean rounded-pill" disabled>
-                        {{ stat.1 }}
-                    </button>
-
+                    
+                    {% if purchase.pay_date %}
+                        <button class="btn hover-top btn-glow btn-klean rounded-pill" disabled>
+                            Оплачено
+                        </button>
                     {% else %}
-
-                    <button class="btn hover-top btn-glow btn-klean rounded-pill" type="submit">
-                        Оплатить
-                    </button>
-
+                        <button class="btn hover-top btn-glow btn-klean rounded-pill" 
+                            type="button" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#exampleModal" 
+                            data-bs-whatever="{{ purchase.pk }}">
+                            Оплатить
+                        </button>
                     {% endif %}
-
-                    {% endif %}
-                    {% endfor %}
-
-
-
+                    
                 </div>
             </article>
 
@@ -68,5 +58,96 @@
 
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> </h5>
+          <button type="button" class="btn-close" id="close_modale_page" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="{% static 'img/gallery/terminal.png' %}" class="img-fluid">
+        </div>
+        <input id="exModalVal" value="" hidden>
+        <div class="modal-footer">
+          <button type="button" id="payOrder" class="btn btn-primary">Оплатить</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Toats-->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast " role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+      </div>
+      <div class="toast-body" id="toast_content">
+        
+      </div>
+    </div>	
+  </div>
+  
+
+  <script>
+        var url = document.location.href;
+        var a = document.cookie.split(';');
+        var token = '';
+
+        for (i = 0; i < a.length; i++) {
+            var b = a[i].split('=');
+            b[0] = b[0].replace(/\s+/g, '');
+            if (b[0] == 'csrftoken') {
+                token = b[1];
+            }
+        };
+
+        const exampleModal = document.getElementById('exampleModal')
+
+        if (exampleModal) {
+            exampleModal.addEventListener('show.bs.modal', event => {
+                const button = event.relatedTarget;
+                const order_id = button.getAttribute('data-bs-whatever');
+                const modalBodyInput = exampleModal.querySelector('#exModalVal');
+                modalBodyInput.value = order_id;
+                
+                $('#payOrder').on('click', function(){
+                    $.ajax({
+                        url: url,
+                        method: 'POST',
+                        data: {
+                            csrfmiddlewaretoken: token,
+                            type: 'pay_order',
+                            order_id: order_id
+                        }
+                    }).then(function (result) {
+                        $('#close_modale_page').click();
+                        $('#toast_content').text('Товар оплачен')
+                        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+                        var toastList = toastElList.map(function(toastEl) {
+                            // Creates an array of toasts (it only initializes them)
+                            return new bootstrap.Toast(toastEl) // No need for options; use the default options
+                        });
+                        toastList.forEach(toast => toast.show()); // This show them
+                    }).catch(function (err) {
+                        $('#close_modale_page').click();
+                        $('#toast_content').text('Ошибка')
+                        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+                        var toastList = toastElList.map(function(toastEl) {
+                            // Creates an array of toasts (it only initializes them)
+                            return new bootstrap.Toast(toastEl) // No need for options; use the default options
+                        });
+                        toastList.forEach(toast => toast.show()); // This show them
+                    })
+                    location.reload();
+                });
+                
+            })
+        }
+
+  </script>
 
 {% endblock content %}

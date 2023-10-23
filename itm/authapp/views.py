@@ -1,4 +1,5 @@
 from django.contrib.auth.views import LoginView, LogoutView
+from django.http import JsonResponse
 from django.views.generic import TemplateView, CreateView
 from authapp.forms import LoginUserForm, CustomUserCreationForm
 from django.urls import reverse_lazy
@@ -6,7 +7,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.conf import settings
 from django.utils import dateformat
+from authapp.models import CustomUser
 from mainapp.models import Basket
+from datetime import datetime as dt
 
 
 class RegPageView(CreateView):
@@ -31,22 +34,17 @@ class ProfilePageView(LoginRequiredMixin, TemplateView):
     def get_queryset(self):
         some_param = self.request.user.pk  # Здесь может быть ваш параметр
         return Basket.objects.filter(custom_user_id=some_param)
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filtered_objects'] = self.get_queryset()
         context['user_name'] = self.request.user.username
         return context
 
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super().get_context_data(*args, **kwargs)
-    #     #Получаем текущего пользователя
-    #     user_pk = self.request.user.pk
-
-    #     filtered_objects = Basket.objects.filter(custom_user_id=user_pk)
-        
-    #     context['filtered_objects'] = filtered_objects
-
-    #     return context
-
-
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('type') == 'pay_order':
+            order = Basket.objects.filter(pk=request.POST.get('order_id'))
+            order.update(
+                pay_date=dt.now()
+            )
+            return JsonResponse({'status': 'OK'})
