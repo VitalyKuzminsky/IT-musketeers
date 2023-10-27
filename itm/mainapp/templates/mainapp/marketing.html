@@ -8,7 +8,7 @@
         </div>
 
         <div class="row justify-content-center circle-blend circle-blend-left-project circle-warning">
-            <div class="col-lg-6 text-center mx-auto mb-6">
+            <div class="col-lg-6 text-center mx-auto mb-6 mt-4">
               <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Интернет-маркетинг</h5>
               <p class="mb-0">Предлагаем Вашему вниманию наши услуги по маркетингу в сети</p>
             </div>
@@ -19,7 +19,7 @@
 
                     {% for i in services %}
                         <div class="col-12 col-md-6 col-lg-4">
-                            <a class="nav-link" href="{% url 'service_detail' pk=i.id %}">{{ i.name }}
+                            <a class="nav-link text-center" href="{% url 'service_detail' pk=i.id %}">{{ i.name }}
                                 <img class="my-5 img-fluid" src="/media/{{ i.photo }}" alt="{{ i.photo }}">
                             </a>
                         </div>

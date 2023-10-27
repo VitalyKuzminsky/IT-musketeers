@@ -98,12 +98,18 @@
                     <td>{{ order.custom_user_id }}</td>
                     <td>{{ order.service_id.name }}</td>
                     <td>{{ order.create_date|str_date }}</td>
-                    <td>
+                    <td id="pay_st_{{order.id}}">
                         {% if order.pay_date %}
-                        <span
-                            class="badge bg-success text-bg-outline-success d-flex align-items-center justify-content-center rounded-pill">
-                            ОПЛАЧЕНО<br>{{ order.pay_date|str_date }}
-                        </span>
+                            {% if order.payed_status %}
+                                <span
+                                    class="badge bg-success text-bg-outline-success d-flex align-items-center justify-content-center rounded-pill">
+                                    ОПЛАЧЕНО<br>{{ order.pay_date|str_date }}
+                                </span>
+                            {% else %}
+                                <button class="button btn-klean badge rounded-pill payed_confirmation" data-pay-id="{{ order.id }}" type="button">
+                                    Подтвердить оплату
+                                </button>
+                            {% endif %}
                         {% else %}
                         <span
                             class="badge bg-warning d-flex align-items-center justify-content-center rounded-pill ms-auto my-auto">
@@ -112,7 +118,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <select class="form-select change_status" data-id="{{ order.id }}">
+                        <select class="form-select change_status rounded-pill" data-id="{{ order.id }}">
                             {% for key, val in statuses.items %}
 
                             {% if key == order.status_completed %}
@@ -342,6 +348,28 @@
             var x = 1;
         });
     };
+
+    $('.payed_confirmation').on('click', function (event) {
+        var pay_id = event.currentTarget.getAttribute('data-pay-id')
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                csrfmiddlewaretoken: token,
+                type: 'payed_confirmation',
+                order_id: pay_id
+            }
+        }).then(function (result) {
+
+            $(`#pay_st_${pay_id}`).empty();
+            var new_stat = `<span class="badge bg-success text-bg-outline-success d-flex align-items-center justify-content-center rounded-pill">
+                                ОПЛАЧЕНО
+                            </span>`;
+            $(`#pay_st_${pay_id}`).append(new_stat);
+        }).catch(function (err) {
+            var x = 0;
+        })
+    })
 
     $('.change_status').on('change', function (event) {
         $.ajax({

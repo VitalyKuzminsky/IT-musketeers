@@ -138,6 +138,11 @@ class OrderPageView(TemplateView):
             basket.update(status_completed=new_status)
             return JsonResponse({'status': 'OK'})
 
+        if request.POST.get('type') == 'payed_confirmation':
+            basket = Basket.objects.filter(pk=request.POST.get('order_id'))
+            basket.update(payed_status=True)
+            return JsonResponse({'status': 'OK'})
+
         if request.POST.get('type') == 'filter_result':
             skip_list = ['csrfmiddlewaretoken', 'type']
             filter_dict = {key: val for key, val in request.POST.items() if key not in skip_list and val}

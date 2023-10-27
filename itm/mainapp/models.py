@@ -80,6 +80,7 @@ class Basket(models.Model):
     service_id = models.ForeignKey(Services, on_delete=models.CASCADE, verbose_name='Услуга')
     create_date = models.DateTimeField(auto_now_add=True, verbose_name='Время заявки')
     pay_date = models.DateTimeField(null=True, blank=True, verbose_name='Время оплаты')
+    payed_status = models.BooleanField(null=True, blank=True, default=False, verbose_name='Подтверждение оплаты')
     status_completed = models.CharField(choices=STATUS, default=STATUS[0][0], max_length=24, verbose_name='Отметка об окончании работы')
 
     def __str__(self):
